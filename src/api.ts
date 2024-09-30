@@ -1,4 +1,4 @@
-import { publish as _publish, IPublishOptions } from './publish';
+import { publish as _publish, IPublishOptions, unpublish as _unpublish, IUnpublishOptions } from './publish';
 import { packageCommand, listFiles as _listFiles, IPackageOptions } from './package';
 
 /**
@@ -74,6 +74,19 @@ export type { IPublishOptions } from './publish';
  */
 export function publish(options: IPublishOptions = {}): Promise<any> {
 	return _publish(options);
+}
+
+export type { IUnpublishOptions } from './publish';
+
+/**
+ * Unpublishes the extension in the current working directory.
+ * @public
+ */
+export function unpublish(options: IUnpublishOptions = {}): Promise<any> {
+	if (options.force === undefined) {
+		options.force = true;
+	}
+	return _unpublish(options);
 }
 
 /**
